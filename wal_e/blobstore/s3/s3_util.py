@@ -5,6 +5,7 @@ import socket
 import traceback
 
 import boto
+import ssl
 
 from . import calling_format
 from wal_e import files
@@ -15,6 +16,7 @@ from wal_e.piper import PIPE
 from wal_e.retries import retry, retry_with_count
 
 logger = log_help.WalELogger(__name__)
+ssl._create_default_https_context = ssl._create_unverified_context
 
 # Set a timeout for boto HTTP operations should no timeout be set.
 # Yes, in the case the user *wanted* no timeouts, this would set one.
